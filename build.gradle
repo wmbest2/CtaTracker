@@ -24,8 +24,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:4.0.1'
     compile 'com.squareup.dagger:dagger:1.2.1'
     compile 'com.squareup.dagger:dagger-compiler:1.2.1'
-    compile 'com.vokalinteractive:volleyball:1.0.0'
-    compile 'com.vokalinteractive:volleyball-debug:1.0.0'
+    compile 'com.vokalinteractive:volleyball:1.1.1'
+    compile 'com.vokalinteractive:volleyball-debug:1.1.0'
     compile 'com.wmbest.barstool:barstool:1.1.2'
     compile 'com.newrelic.agent.android:android-agent:3.308.0'
     compile('org.simpleframework:simple-xml:2.7.1') {

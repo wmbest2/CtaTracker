@@ -2,6 +2,6 @@
 <font-icon
     xmlns:android="http://schemas.android.com/apk/res-auto"
     android:text="b"
-    android:textSize="36dp"
+    android:textSize="24dp"
     android:textColor="@android:color/white"
     />

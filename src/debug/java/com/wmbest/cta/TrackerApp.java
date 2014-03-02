@@ -35,7 +35,7 @@ public class TrackerApp extends DaggerApp {
     public Object[] getModules() {
 
         VolleyBall networkModule = new VolleyBall(this);
-        networkModule.addServer("Production", "http://www.ctabustracker.com/bustime/api/v1/");
+        networkModule.forEnv("Production").addServer("http://www.ctabustracker.com/bustime/api/v1/");
         networkModule.addMock(R.xml.routes);
 
         return new Object[] {
