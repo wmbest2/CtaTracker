@@ -15,7 +15,7 @@ public class Route extends AbstractDataModel implements BaseColumns {
     public static final String DIRECTION = "direction";
 
     @Element(required=false)
-    public int id;
+    public int id = -1;
 
     @Element(name="rt")
     public String number;
@@ -26,10 +26,10 @@ public class Route extends AbstractDataModel implements BaseColumns {
     @Element(required=false)
     public String directions;
 
-    protected void populateContentValues(ContentValues aValues) {
+    public void populateContentValues(ContentValues aValues) {
         // put fields in aValues
 
-        aValues.put(_ID, id);
+        if (id != -1) aValues.put(_ID, id);
         aValues.put(NAME, name);
         aValues.put(NUMBER, number);
         aValues.put(DIRECTION, directions);
@@ -41,9 +41,10 @@ public class Route extends AbstractDataModel implements BaseColumns {
         @Override
         public SQLiteTable buildTableSchema(SQLiteTable.Builder aBuilder) {
             aBuilder.addIntegerColumn(_ID).primaryKey().autoincrement()
-                .addStringColumn(NAME).notNull()
-                .addStringColumn(NUMBER).notNull()
-                .addStringColumn(DIRECTION);
+                .addStringColumn(NAME)
+                .addStringColumn(NUMBER)
+                .addStringColumn(DIRECTION)
+                .unique(NAME, NUMBER);
 
             return aBuilder.build();
         }

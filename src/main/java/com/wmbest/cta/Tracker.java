@@ -1,6 +1,7 @@
 package com.wmbest.cta;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import dagger.*;
@@ -20,9 +21,6 @@ import com.wmbest.cta.service.RouteService;
 
 public class Tracker extends Activity {
 
-    @Inject Bus mBus;
-    @Inject RouteService mService;
-
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -31,29 +29,11 @@ public class Tracker extends Activity {
         setContentView(R.layout.main);
 
         ObjectGraph graph = ((DaggerApp) getApplication()).graph();
-
-        graph.inject(this);
         Barstool.with(graph).wrap(this);
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mBus.register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mBus.unregister(this);
-    }
-
-    @Subscribe
-    public void onServerChange(VolleyBallDebug.Changed aEvent) {
-        ObjectGraph graph = ((DaggerApp) getApplication()).graph();
-        graph.inject(this);
-
-        mService.fetchRoutes();
+        FragmentTransaction t = getFragmentManager().beginTransaction();
+        t.replace(R.id.root, new RoutesFragment());
+        t.commit();
     }
 
 }

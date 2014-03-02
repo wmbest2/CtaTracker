@@ -7,12 +7,12 @@ import javax.inject.Singleton;
 
 import com.vokal.volley.*;
 
-import com.wmbest.cta.Tracker;
+import com.wmbest.cta.RoutesFragment;
 
 @Module(
     complete=false,
     injects={
-        Tracker.class,
+        RoutesFragment.class
     }
 )
 public class OttoModule {
